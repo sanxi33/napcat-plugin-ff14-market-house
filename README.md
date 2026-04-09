@@ -60,11 +60,6 @@
 - `house.ffxiv.cyou` 的可用性会直接影响查房结果
 - 物品字典为静态文件，若游戏版本变更需要更新字典
 
-## 开源流程文档
-
-- [OPEN_SOURCE_CHECKLIST.md](./OPEN_SOURCE_CHECKLIST.md)
-- [NAPCAT_PLUGIN_OPEN_SOURCE_WORKFLOW.md](./NAPCAT_PLUGIN_OPEN_SOURCE_WORKFLOW.md)
-
 ## License
 
 MIT
