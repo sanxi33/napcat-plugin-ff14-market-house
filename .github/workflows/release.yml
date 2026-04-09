@@ -69,7 +69,7 @@ jobs:
         run: |
           CURRENT_TAG="${{ steps.version.outputs.version }}"
           git fetch --tags --force
-          PREV_TAG=$(git tag -l "v*" --sort=version:refname | grep -v "$CURRENT_TAG" | tail -1)
+          PREV_TAG=$(git tag -l "v*" --sort=version:refname | { grep -v "$CURRENT_TAG" || true; } | tail -1)
 
           if [ -z "$PREV_TAG" ]; then
             PREV_TAG=$(git rev-list --max-parents=0 HEAD | head -1)
