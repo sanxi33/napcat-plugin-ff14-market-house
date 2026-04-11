@@ -203,15 +203,6 @@ export const plugin_onmessage = async (ctx, event) => {
 };
 
 export const plugin_get_config = async () => currentConfig;
-export const plugin_set_config = async (ctx, cfg) => {
-  currentConfig = sanitizeConfig(cfg);
-  parseItemDict();
-  try {
-    const dir = path.dirname(ctx.configPath);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(ctx.configPath, JSON.stringify(currentConfig, null, 2), 'utf-8');
-  } catch {}
-};
 export const plugin_on_config_change = async (ctx, ui, key, value, cur) => {
   currentConfig = sanitizeConfig(cur);
   if (key === 'itemDictPath') parseItemDict();
