@@ -1,6 +1,6 @@
 {
   "enabled": true,
-  "commandPrefix": "球鳖",
+  "commandPrefix": "/",
   "defaultServer": "猫小胖",
   "requestTimeoutMs": 10000,
   "itemDictPath": "./data/item_dict.json"

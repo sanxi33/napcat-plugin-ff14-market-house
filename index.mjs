@@ -12,7 +12,7 @@ const __dirname = path.dirname(__filename);
 
 const DEFAULT_CONFIG = {
   enabled: true,
-  commandPrefix: '球鳖',
+  commandPrefix: '/',
   defaultServer: '猫小胖',
   requestTimeoutMs: 10000,
   itemDictPath: './data/item_dict.json'
@@ -99,7 +99,7 @@ function parseMarketCommand(text) {
   const cleaned = stripPrefix(text);
   if (!normalize(cleaned).includes('查价')) return null;
   const rest = cleaned.slice(cleaned.indexOf('查价') + 2).trim();
-  if (!rest) return { error: '格式：球鳖 查价 物品名 [服务器] [HQ]' };
+  if (!rest) return { error: '格式：/查价 物品名 [服务器] [HQ]' };
 
   const parts = rest.split(/\s+/).filter(Boolean);
   const itemName = parts[0];
@@ -118,7 +118,7 @@ function parseHouseCommand(text) {
   if (!normalize(cleaned).includes('查房')) return null;
   const rest = cleaned.slice(cleaned.indexOf('查房') + 2).trim();
   const parts = rest.split(/\s+/).filter(Boolean);
-  if (parts.length !== 3) return { error: '格式：球鳖 查房 服务器 主城(森都/海都/沙都/白银/雪都) 尺寸(S/M/L)' };
+  if (parts.length !== 3) return { error: '格式：/查房 服务器 主城(森都/海都/沙都/白银/雪都) 尺寸(S/M/L)' };
   return { server: parts[0], area: parts[1], size: parts[2].toUpperCase() };
 }
 
@@ -175,7 +175,7 @@ export const plugin_init = async (ctx) => {
   logger = ctx.logger;
   plugin_config_ui = ctx.NapCatConfig.combine(
     ctx.NapCatConfig.boolean('enabled', '启用插件', true, '总开关'),
-    ctx.NapCatConfig.text('commandPrefix', '命令前缀', '球鳖', '例如：球鳖 查价 魔晶石'),
+    ctx.NapCatConfig.text('commandPrefix', '命令前缀', '/', '例如：/查价 魔晶石'),
     ctx.NapCatConfig.text('defaultServer', '默认服务器', '猫小胖', '查价默认服'),
     ctx.NapCatConfig.number('requestTimeoutMs', '请求超时(ms)', 10000, '1000-30000'),
     ctx.NapCatConfig.text('itemDictPath', '物品字典路径', DEFAULT_CONFIG.itemDictPath, '仓库内默认提供 ./data/item_dict.json')
